@@ -88,11 +88,8 @@ public class UIManager : MonoBehaviour
             return;
 
         _uiDataTable ??= _uiData.Result.table;
-        if (_uiDataTable is not null && _uiDataTable.Count > 0)
-        {
-            uiScroll.SetCount(_uiDataTable.Count);   
-        }
 
+        // Atlas Load
         _uiAtlas = Addressables.LoadAssetAsync<SpriteAtlas>(uiScrollAtlas);
         await _uiAtlas;
         if (!_uiAtlas.IsValid())
@@ -108,11 +105,9 @@ public class UIManager : MonoBehaviour
             return;
         
         _uiPrefabItem ??= _uiPrefab.Result.GetComponent<RectTransform>();
-        if (_uiPrefabItem is not null)
-        {
-            uiScroll.SetItem(_uiPrefabItem);   
-        }
         
+        // Init
+        uiScroll.SetInit(_uiPrefabItem, _uiDataTable.Count);
     }
 
     private void Release()
@@ -142,16 +137,8 @@ public class UIManager : MonoBehaviour
         var item = target.GetComponent<UIItem>();
         var size = _uiPrefabItem.sizeDelta;
 
-        if (_uiDataTable.Count <= index)
-        {
-            item.SetText(index.ToString(), new Vector2(size.x, 100f));
-            item.SetSprite(null, new Vector2(size.x, size.y - 100f));   
-        }
-        else
-        {
-            item.SetText(_uiDataTable[index].text, new Vector2(size.x, 100f));
-            item.SetSprite(_uiAtlasSprites.GetSprite(_uiDataTable[index].sprite), new Vector2(size.x, size.y - 100f));
-        }
+        item.SetText(_uiDataTable.Count <= index ? index.ToString() : _uiDataTable[index].text, new Vector2(size.x, 100f));
+        item.SetSprite(_uiDataTable.Count <= index ? null : _uiAtlasSprites.GetSprite(_uiDataTable[index].sprite), new Vector2(size.x, size.y - 100f));
     }
     
     #endregion

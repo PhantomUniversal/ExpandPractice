@@ -35,17 +35,24 @@ public class UIScroll : MonoBehaviour
 
     
     #region SET
-
+    
     public void SetEnable(bool enable)
     {
         _scrollEnable = enable;
+    }
+
+    public void SetInit(RectTransform target, int count)
+    {
+        _scrollItem = target;
+        _scrollItemCount = count;
+        Refresh();
+        Resize();
     }
     
     public void SetItem(RectTransform target)
     {
         _scrollItem = target;
         Refresh();
-        Resize();
     }
 
     public void SetCount(int count)
@@ -86,6 +93,7 @@ public class UIScroll : MonoBehaviour
         
         _scrollSize = _scrollRect.GetComponent<RectTransform>().rect;
         _scrollContent = _scrollRect.content;
+        
         _scrollRect.onValueChanged.AddListener(OnValueChange);
     }
     
@@ -95,40 +103,39 @@ public class UIScroll : MonoBehaviour
 
     #region FUNCTION
     
-    private void Refresh()
+    public void Refresh()
     {
         _scrollDirection = Direction();
         if (_scrollDirection == UIDirectionType.None)
         {
             _scrollEnable = false;
+            return;
         }
-        else
+        
+        if (_scrollRect is null || _scrollItem is null)
+            return;
+            
+        _scrollItemLIst ??= new LinkedList<RectTransform>();
+        _scrollItemLIst.Clear();
+            
+        var count = _scrollDirection == UIDirectionType.Vertical 
+            ? (int)(_scrollSize.height / _scrollItem.sizeDelta.y) : (int)(_scrollSize.width / _scrollItem.sizeDelta.x);
+        count += 3; // Todo variable offset
+            
+        for (var i = 0; i < count; i++)
         {
-            if (_scrollRect is null || _scrollItem is null)
-                return;
-            
-            _scrollItemLIst ??= new LinkedList<RectTransform>();
-            _scrollItemLIst.Clear();
-            
-            var count = _scrollDirection == UIDirectionType.Vertical 
-                ? (int)(_scrollSize.height / _scrollItem.sizeDelta.y) : (int)(_scrollSize.width / _scrollItem.sizeDelta.x);
-            count += 3; // Todo variable offset
-            
-            for (var i = 0; i < count; i++)
-            {
-                var item = Instantiate(_scrollItem, _scrollContent);
-                item.anchoredPosition = _scrollDirection == UIDirectionType.Vertical
-                    ? new Vector2(0, -item.sizeDelta.y * i) : new Vector2(item.sizeDelta.x * i, 0);
+            var item = Instantiate(_scrollItem, _scrollContent);
+            item.anchoredPosition = _scrollDirection == UIDirectionType.Vertical
+                ? new Vector2(0, -item.sizeDelta.y * i) : new Vector2(item.sizeDelta.x * i, 0);
                 
-                _scrollItemLIst.AddLast(item);
-                ScrollCallback?.Invoke(item, i);
-            }
-            
-            _scrollEnable = _scrollItemLIst.Count > 0;
+            _scrollItemLIst.AddLast(item);
+            ScrollCallback?.Invoke(item, i);
         }
+            
+        _scrollEnable = _scrollItemLIst.Count > 0;
     }
 
-    private void Resize()
+    public void Resize()
     {
         if (_scrollRect is null || _scrollItem is null)
             return;
@@ -218,7 +225,7 @@ public class UIScroll : MonoBehaviour
 
 
 
-    #region UTILITY
+    #region RETURN
     
     private UIDirectionType Direction()
     {
