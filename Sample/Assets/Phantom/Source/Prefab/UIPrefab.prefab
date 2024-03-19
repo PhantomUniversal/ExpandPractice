@@ -165,7 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce01587e0a8d4c549875eb1b27d9afd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rectTransform: {fileID: 7396179176800126123}
   image: {fileID: 372973336077337355}
   label: {fileID: 8804558622727798144}
 --- !u!1 &6330839900569000830
@@ -235,8 +234,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a8f70e0c921b749bab2fce31d1924f6f, type: 2}
+  m_sharedMaterial: {fileID: -7389710245249907126, guid: a8f70e0c921b749bab2fce31d1924f6f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

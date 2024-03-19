@@ -13,103 +13,103 @@ MonoBehaviour:
   m_Name: UIData
   m_EditorClassIdentifier: 
   table:
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: "\uBA54\uC774\uD50C \uC2A4\uD1A0\uB9AC"
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: "\uB358\uC804\uC564 \uD30C\uC774\uD2B8"
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: "\uBC14\uB78C\uC758 \uB098\uB77C"
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: "\uC77C\uB79C\uC2DC\uC544"
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: "\uCE74\uD2B8\uB77C\uC774\uB354"
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: "\uC11C\uB4E0\uC5B4\uD0DD"
-  - image: {fileID: 0}
-    text: 6
-  - image: {fileID: 0}
-    text: 7
-  - image: {fileID: 0}
-    text: 8
-  - image: {fileID: 0}
-    text: 9
-  - image: {fileID: 0}
-    text: 10
-  - image: {fileID: 0}
-    text: 11
-  - image: {fileID: 0}
-    text: 12
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
+    text: "\uD53C\uD30C \uC628\uB77C\uC778"
+  - sprite: {fileID: 0}
+    text: "\uBE14\uB8E8\uC544\uCE74\uC774"
+  - sprite: {fileID: 21300000, guid: c044568f979984223833d3fc102406bd, type: 3}
+    text: "\uB9C8\uBE44\uB178\uAE30"
+  - sprite: {fileID: 0}
+    text: "\uC5D8\uC18C\uB4DC"
+  - sprite: {fileID: 0}
+    text: "\uD14C\uC77C\uC988\uC704\uBC84"
+  - sprite: {fileID: 21300000, guid: c8e16bf53f89c432fa6cf8d414eacf26, type: 3}
+    text: "\uD06C\uB808\uC774\uC9C0\uC544\uCF00\uC774\uB4DC"
+  - sprite: {fileID: 0}
+    text: "\uD074\uB85C\uC800\uC2A4"
+  - sprite: {fileID: 0}
     text: 13
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 14
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 15
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 16
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 17
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 18
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 19
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 20
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 21
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 22
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 23
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 24
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 25
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 26
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 27
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 28
-  - image: {fileID: 0}
+  - sprite: {fileID: 21300000, guid: e06dedafabe584edebcc810cce408a00, type: 3}
     text: 29
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 30
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 31
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 32
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 33
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 34
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 35
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 36
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 37
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 38
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 39
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 40
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 41
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 42
-  - image: {fileID: 0}
+  - sprite: {fileID: 21300000, guid: 30e49960ee77f4fea8a4057f0b1b01b3, type: 3}
     text: 43
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 44
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 45
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 46
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 47
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 48
-  - image: {fileID: 0}
+  - sprite: {fileID: 0}
     text: 49
