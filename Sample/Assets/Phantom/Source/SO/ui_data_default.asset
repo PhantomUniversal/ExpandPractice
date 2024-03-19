@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5846f0c9970a41339a3dfc01f6cfeaee, type: 3}
+  m_Name: ui_data_default
+  m_EditorClassIdentifier: 
+  table:
+  - sprite: ui_image_sample1
+    text: "\uBA54\uC774\uD50C \uC2A4\uD1A0\uB9AC"
+  - sprite: 
+    text: "\uB358\uC804\uC564 \uD30C\uC774\uD2B8"
+  - sprite: ui_image_sample2
+    text: "\uBC14\uB78C\uC758 \uB098\uB77C"
+  - sprite: 
+    text: "\uC77C\uB79C\uC2DC\uC544"
+  - sprite: 
+    text: "\uCE74\uD2B8\uB77C\uC774\uB354"
+  - sprite: 
+    text: "\uC11C\uB4E0\uC5B4\uD0DD"
+  - sprite: 
+    text: "\uD53C\uD30C \uC628\uB77C\uC778"
+  - sprite: ui_image_sample3
+    text: "\uBE14\uB8E8\uC544\uCE74\uC774"
+  - sprite: 
+    text: "\uB9C8\uBE44\uB178\uAE30"
+  - sprite: 
+    text: "\uC5D8\uC18C\uB4DC"
+  - sprite: 
+    text: "\uD14C\uC77C\uC988\uC704\uBC84"
+  - sprite: 
+    text: "\uD06C\uB808\uC774\uC9C0\uC544\uCF00\uC774\uB4DC"
+  - sprite: 
+    text: "\uD074\uB85C\uC800\uC2A4"
+  - sprite: ui_image_sample4
+    text: 13
+  - sprite: 
+    text: 14
+  - sprite: 
+    text: 15
+  - sprite: 
+    text: 16
+  - sprite: 
+    text: 17
+  - sprite: 
+    text: 18
+  - sprite: 
+    text: 19
+  - sprite: 
+    text: 20
+  - sprite: 
+    text: 21
+  - sprite: 
+    text: 22
+  - sprite: 
+    text: 23
+  - sprite: 
+    text: 24
+  - sprite: 
+    text: 25
+  - sprite: 
+    text: 26
+  - sprite: 
+    text: 27
+  - sprite: 
+    text: 28
+  - sprite: 
+    text: 29
+  - sprite: 
+    text: 30
+  - sprite: 
+    text: 31
+  - sprite: 
+    text: 32
+  - sprite: 
+    text: 33
+  - sprite: 
+    text: 34
+  - sprite: 
+    text: 35
+  - sprite: 
+    text: 36
+  - sprite: 
+    text: 37
+  - sprite: 
+    text: 38
+  - sprite: 
+    text: 39
+  - sprite: 
+    text: 40
+  - sprite: 
+    text: 41
+  - sprite: 
+    text: 42
+  - sprite: 
+    text: 43
+  - sprite: 
+    text: 44
+  - sprite: 
+    text: 45
+  - sprite: 
+    text: 46
+  - sprite: 
+    text: 47
+  - sprite: 
+    text: 48
+  - sprite: 
+    text: 49

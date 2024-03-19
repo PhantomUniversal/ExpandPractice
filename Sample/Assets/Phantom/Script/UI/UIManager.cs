@@ -3,39 +3,67 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.UI;
+using UnityEngine.U2D;
 
-[RequireComponent(typeof(ScrollRect))]
 public class UIManager : MonoBehaviour
 {
     
-    #region HANDLE
-    
-    private AsyncOperationHandle<UIData> _uiData;
-    private AsyncOperationHandle<GameObject> _uiPrefab;
-    
-    #endregion
-
-
-
     #region COMPONENT
 
-    private List<UITable> _uiTable;
-    private ScrollRect _uiScroll;
-    private LinkedList<RectTransform> _uiList;
-    private RectTransform _uiItem;
-    private int _uiIndex;
-    private float _uiLocation;
+    [SerializeField] private UIScroll uiScroll;
+    [SerializeField] private string uiScrollData;
+    [SerializeField] private string uiScrollAtlas;
+    [SerializeField] private string uiScrollPrefab;
     
     #endregion
     
     
+    #region VARIABLE
+
+    // ==================================================
+    // [ Data ]
+    // ==================================================
+    private AsyncOperationHandle<UIData> _uiData;
+    private List<UITable> _uiDataTable;
+    
+    
+    // ==================================================
+    // [ Atlas ]
+    // ==================================================
+    private AsyncOperationHandle<SpriteAtlas> _uiAtlas;
+    private SpriteAtlas _uiAtlasSprites;
+    
+    // ==================================================
+    // [ Prefab ]
+    // ==================================================
+    private AsyncOperationHandle<GameObject> _uiPrefab;
+    private RectTransform _uiPrefabItem;
+    
+    #endregion
+
+
     
     #region LIFECYCLE
+
+    private void OnEnable()
+    {
+        if (uiScroll is null)
+            return;
+        
+        uiScroll.Register(OnValueChange);
+    }
 
     private void Start()
     {
         Init().Forget();
+    }
+
+    private void OnDisable()
+    {
+        if (uiScroll is null)
+            return;
+        
+        uiScroll.UnRegister(OnValueChange);
     }
 
     private void OnDestroy()
@@ -54,23 +82,37 @@ public class UIManager : MonoBehaviour
         await Addressables.InitializeAsync();
         
         // Data Load
-        _uiData = Addressables.LoadAssetAsync<UIData>(UIHelper.DataLabel);
+        _uiData = Addressables.LoadAssetAsync<UIData>(uiScrollData);
         await _uiData;
         if (!_uiData.IsValid())
             return;
 
-        _uiTable ??= _uiData.Result.table;
+        _uiDataTable ??= _uiData.Result.table;
+        if (_uiDataTable is not null && _uiDataTable.Count > 0)
+        {
+            uiScroll.SetCount(_uiDataTable.Count);   
+        }
+
+        _uiAtlas = Addressables.LoadAssetAsync<SpriteAtlas>(uiScrollAtlas);
+        await _uiAtlas;
+        if (!_uiAtlas.IsValid())
+            return;
+
+        _uiAtlasSprites ??= _uiAtlas.Result;
         
         // Prefab Load
-        _uiPrefab = Addressables.LoadAssetAsync<GameObject>(UIHelper.PrefabLabel);
+        _uiPrefab = Addressables.LoadAssetAsync<GameObject>(uiScrollPrefab);
         await _uiPrefab;
-
+        
         if (!_uiPrefab.IsValid())
             return;
         
-        _uiItem ??= _uiPrefab.Result.GetComponent<RectTransform>(); 
+        _uiPrefabItem ??= _uiPrefab.Result.GetComponent<RectTransform>();
+        if (_uiPrefabItem is not null)
+        {
+            uiScroll.SetItem(_uiPrefabItem);   
+        }
         
-        Refresh();
     }
 
     private void Release()
@@ -85,97 +127,33 @@ public class UIManager : MonoBehaviour
             Addressables.Release(_uiPrefab);
         }
     }
-
-    private void Refresh()
-    {
-        if (_uiTable is null || _uiTable.Count == 0)
-            return;
-        
-        _uiScroll ??= GetComponent<ScrollRect>();
-        
-        // Todo OnValueChange -> Update 
-        _uiScroll.onValueChanged.RemoveAllListeners();
-        _uiScroll.onValueChanged.AddListener(OnValueChange);
-        _uiScroll.content.sizeDelta = new Vector2(UIHelper.ItemWidth, UIHelper.ItemHeight * _uiTable.Count);
-        
-        if (_uiItem is null)
-            return;
-        
-        _uiList ??= new LinkedList<RectTransform>();
-        _uiList.Clear();
-        
-        for (var i = 0; i < UIHelper.ItemCount; i++)
-        {
-            var item = Instantiate(_uiItem, _uiScroll.content);
-            item.anchoredPosition = new Vector2(0, -UIHelper.ItemHeight * i);
-            item.sizeDelta = new Vector2(UIHelper.ItemWidth, UIHelper.ItemHeight);
-            _uiList.AddLast(item);
-
-            Item(item, i);
-        }
-    }
-
-    #endregion
-
-
-
-    #region EVENT
     
-    private void OnValueChange(Vector2 value)
-    {
-        if (_uiList.First == null)
-            return;
-        
-        if (-_uiScroll.content.anchoredPosition.y - _uiLocation < -UIHelper.ItemHeight * 2)
-        {
-            if (_uiIndex + UIHelper.ItemCount >= _uiTable.Count)
-                return;
-            
-            _uiLocation -= UIHelper.ItemHeight;
-            
-            var target = _uiList.First.Value;
-            _uiList.RemoveFirst();
-            _uiList.AddLast(target);
-
-            var location = UIHelper.ItemHeight * UIHelper.ItemCount + UIHelper.ItemHeight * _uiIndex;
-            target.anchoredPosition = new Vector2(0, -location);
-            Item(target, _uiIndex + UIHelper.ItemCount);
-            
-            _uiIndex++;
-        }
-
-        if (-_uiScroll.content.anchoredPosition.y - _uiLocation > 0)
-        {
-            if (_uiIndex <= 0)
-                return;
-            
-            _uiLocation += UIHelper.ItemHeight;
-            
-            var target = _uiList.Last.Value;
-            _uiList.RemoveLast();
-            _uiList.AddFirst(target);
-            
-            _uiIndex--;
-            
-            var location = _uiIndex * UIHelper.ItemHeight;
-            target.anchoredPosition = new Vector2(0, -location);
-            Item(target, _uiIndex);
-        }
-    }
-
     #endregion
 
 
 
-    #region FUNCTION
+    #region CALLBACK
 
-    private void Item(RectTransform target, int index)
+    private void OnValueChange(RectTransform target, int index)
     {
-        var item = target.GetComponent<UIItem>();
-        item.SetSprite(_uiTable[index].sprite);
-        item.SetText(_uiTable[index].text);
-    }
+        if (_uiDataTable is null || _uiDataTable.Count == 0)
+            return;
 
+        var item = target.GetComponent<UIItem>();
+        var size = _uiPrefabItem.sizeDelta;
+
+        if (_uiDataTable.Count <= index)
+        {
+            item.SetText(index.ToString(), new Vector2(size.x, 100f));
+            item.SetSprite(null, new Vector2(size.x, size.y - 100f));   
+        }
+        else
+        {
+            item.SetText(_uiDataTable[index].text, new Vector2(size.x, 100f));
+            item.SetSprite(_uiAtlasSprites.GetSprite(_uiDataTable[index].sprite), new Vector2(size.x, size.y - 100f));
+        }
+    }
+    
     #endregion
     
 }

@@ -72,4 +72,66 @@ public class UIInspector : Editor
     
 }
 
+[CustomEditor(typeof(UIScroll), true)]
+public class UIScrollInspector : Editor
+{
+
+    #region VARIABLE
+
+    private int _eventCount;
+
+    #endregion
+
+
+    
+    #region LIFECYCLE
+
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        
+        
+        EditorGUI.BeginChangeCheck();
+        
+        serializedObject.Update();
+        
+        EditorGUILayout.BeginVertical();
+        
+        _eventCount = EditorGUILayout.IntField(_eventCount);
+        if (GUILayout.Button("Change"))
+        {
+            // Index crate
+            Change();
+        }
+        
+        EditorGUILayout.EndVertical();
+        
+        EditorGUILayout.Space(20f);
+        
+        if (EditorGUI.EndChangeCheck())
+        {
+            serializedObject.ApplyModifiedProperties();
+            EditorUtility.SetDirty(target);    
+        }
+    }
+
+    #endregion
+
+
+
+    #region FUNCTION
+
+    private void Change()
+    {
+        var scroll = (UIScroll)target;
+        if (scroll is null)
+            return;
+
+        scroll.SetCount(_eventCount);
+    }
+
+    #endregion
+    
+}
+
 # endif

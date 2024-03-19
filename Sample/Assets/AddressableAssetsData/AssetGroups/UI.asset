@@ -17,17 +17,29 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: adfdd22a93fcb48799784465b00a7702
   m_SerializeEntries:
-  - m_GUID: 11f5bbda07aa24547865dee330f165c5
-    m_Address: UIPrefab
+  - m_GUID: 232ac495f27da413d83c24918ae19187
+    m_Address: ui_prefab_vertical
     m_ReadOnly: 0
     m_SerializedLabels:
     - Prefab
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9c1a37212fe2c41049fcaef270ee4edf
-    m_Address: UIData
+    m_Address: ui_data_default
     m_ReadOnly: 0
     m_SerializedLabels:
     - Data
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 11f5bbda07aa24547865dee330f165c5
+    m_Address: ui_prefab_horizontal
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefab
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0f4ff23bc4e854abcb5da23bf1110004
+    m_Address: ui_atlas_sample
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Atlas
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 288c268873fd846aaa275b7428dbbbcb, type: 2}

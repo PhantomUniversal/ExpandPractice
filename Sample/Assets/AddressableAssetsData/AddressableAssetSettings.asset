@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 5e41d048ac1cf4a8bbb56b0d9fa887f6
   m_currentHash:
     serializedVersion: 2
-    Hash: f593dc2b0b2222b5d77de794a819a0de
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -89,6 +89,7 @@ MonoBehaviour:
     m_LabelNames:
     - Prefab
     - Data
+    - Atlas
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: e352a4f18143341d69342b312b90edcb, type: 2}
